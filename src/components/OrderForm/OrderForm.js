@@ -3,6 +3,7 @@ import { postOrder } from "../../apiCalls";
 
 function OrderForm({orders, setOrders}) {
   const [name, setName] = useState("");
+  // const [ingredient, setIngredient] = useState('')
   const [ingredients, setIngredients] = useState([]);
   const [newOrder, setNewOrder] = useState('')
 
@@ -17,6 +18,12 @@ function OrderForm({orders, setOrders}) {
     setName("");
     setIngredients([]);
   };
+
+  const addIngredients = (e) => {
+    e.preventDefault()
+    console.log(e.target.value)
+    setIngredients([...ingredients, e.target.value])
+  }
 
   const possibleIngredients = [
     "beans",
@@ -37,7 +44,8 @@ function OrderForm({orders, setOrders}) {
       <button
         key={ingredient}
         name={ingredient}
-        // onClick={(e) => }
+        value={ingredient}
+        onClick={(e) => addIngredients(e)}
       >
         {ingredient}
       </button>
