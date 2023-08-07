@@ -34,7 +34,7 @@ describe("user navigation", () => {
     .get('section').find('div').last().find('h3').should('have.text', 'Bobby')
     .get('.ingredient-list').find('li').last().should('have.text', 'cheese')
   });
-  it.only('Should allow user to add a new order', () => {
+  it('Should allow user to add a new order', () => {
     cy.intercept('POST', 'http://localhost:3001/api/v1/orders', {
       statusCode: 200,
       fixture: 'newOrder'
@@ -52,5 +52,8 @@ describe("user navigation", () => {
     .get('section').find('div').first().find('h3').should('have.text', 'Lydia')
     .get('section').find('div').last().find('h3').should('have.text', 'Sam')
     .get('.ingredient-list').find('li').last().should('have.text', 'hot sauce')
+  })
+  it.only('Should NOT allow user to add an order if name is empty or if no ingredients are selected', () => {
+    cy.visit("http://localhost:3000/")
   })
 });
