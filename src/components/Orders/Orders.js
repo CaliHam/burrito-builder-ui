@@ -19,7 +19,7 @@ const Orders = (props) => {
             return <li key={index}>{ingredient}</li>;
           })}
         </ul>
-        <button id={order.id} onClick={(e) => orderComplete(e)}>X</button>
+        <button id={order.id} className="delete-btn" onClick={(e) => orderComplete(e)}>X</button>
       </div>
     );
   });

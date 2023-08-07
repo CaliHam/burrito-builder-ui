@@ -68,4 +68,15 @@ describe("user navigation", () => {
     .get('.form-error').should('have.text', 'Please enter your name and select your ingredients!')
     .get('.order').should('have.length', 2)
   })
+  it('Should allow a user to delete an order', () => {
+    cy.intercept('DELETE', 'http://localhost:3001/api/v1/orders/:1', {
+      statusCode: 204,
+    }).as('deleteOrder')
+    cy.visit("http://localhost:3000/")
+    .wait('@allOrders')
+    .get('.order').should('have.length', 2)
+    .get('.delete-btn').first().click()
+    cy.wait('@deleteOrder')
+    .get('.order').should('have.length', 1)
+  })
 });
