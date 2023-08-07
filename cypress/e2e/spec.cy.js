@@ -54,7 +54,7 @@ describe("user navigation", () => {
     .get('section').find('div').last().find('h3').should('have.text', 'Sam')
     .get('.ingredient-list').find('li').last().should('have.text', 'hot sauce')
   })
-  it.only('Should show form error if name is empty or if no ingredients are selected', () => {
+  it('Should show form error if name is empty or if no ingredients are selected', () => {
     cy.visit("http://localhost:3000/")
     .wait('@allOrders')
     .get('input[name="name"]').type('Sam')

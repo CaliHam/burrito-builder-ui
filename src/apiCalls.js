@@ -10,3 +10,9 @@ export const postOrder = (name, ingredients) => {
     body: JSON.stringify({name, ingredients})
   }).then(response => response.json())
 }
+
+export const deleteOrder = (order_id) => {
+  return fetch(`http://localhost:3001/api/v1/orders/${order_id}`, {
+    method: 'DELETE',
+  }).then(response => response.json())
+}
