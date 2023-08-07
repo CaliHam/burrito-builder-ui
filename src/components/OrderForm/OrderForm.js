@@ -4,18 +4,16 @@ import { postOrder } from "../../apiCalls";
 function OrderForm({orders, setOrders}) {
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState([]);
-  const [newOrder, setNewOrder] = useState({name: '', ingredients: []})
 
   function handleSubmit(e) {
     e.preventDefault();
-    setNewOrder({
+    const currentOrder = {
       id: Date.now(),
       name: name,
       ingredients: ingredients
-    })
-    console.log(newOrder)
-    // postOrder(newOrder).then(response => setOrders({...orders, response}))
-    // .catch(err => console.log('error posting order', err))
+    }
+    postOrder(currentOrder).then(response => setOrders({...orders, response}))
+    .catch(err => console.log('error posting order', err))
     clearInputs();
   }
 
