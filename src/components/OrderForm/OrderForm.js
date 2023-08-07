@@ -3,14 +3,19 @@ import { postOrder } from "../../apiCalls";
 
 function OrderForm({orders, setOrders}) {
   const [name, setName] = useState("");
-  // const [ingredient, setIngredient] = useState('')
   const [ingredients, setIngredients] = useState([]);
-  const [newOrder, setNewOrder] = useState('')
+  const [newOrder, setNewOrder] = useState({name: '', ingredients: []})
 
   function handleSubmit(e) {
     e.preventDefault();
-    postOrder(newOrder).then(response => setOrders({...orders, response}))
-    .catch(err => console.log('error posting order', err))
+    setNewOrder({
+      id: Date.now(),
+      name: name,
+      ingredients: ingredients
+    })
+    console.log(newOrder)
+    // postOrder(newOrder).then(response => setOrders({...orders, response}))
+    // .catch(err => console.log('error posting order', err))
     clearInputs();
   }
 
@@ -21,8 +26,12 @@ function OrderForm({orders, setOrders}) {
 
   const addIngredients = (e) => {
     e.preventDefault()
-    console.log(e.target.value)
     setIngredients([...ingredients, e.target.value])
+  }
+
+  const updateName = (e) => {
+    e.preventDefault()
+    setName(e.target.value)
   }
 
   const possibleIngredients = [
@@ -59,7 +68,7 @@ function OrderForm({orders, setOrders}) {
         placeholder="Name"
         name="name"
         value={name}
-        onChange={(e) => setName(name)}
+        onChange={(e) => updateName(e)}
       />
 
       {ingredientButtons}
