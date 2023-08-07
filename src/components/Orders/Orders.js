@@ -5,7 +5,6 @@ import { deleteOrder } from "../../apiCalls";
 const Orders = (props) => {
 
   const orderComplete = (e) => {
-    console.log(e.target.id)
     deleteOrder(e.target.id).then(
       console.log('success')
     ).catch(err => console.log(err))

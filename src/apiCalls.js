@@ -14,5 +14,5 @@ export const postOrder = (name, ingredients) => {
 export const deleteOrder = (order_id) => {
   return fetch(`http://localhost:3001/api/v1/orders/${order_id}`, {
     method: 'DELETE',
-  }).then(response => response.json())
+  })
 }
