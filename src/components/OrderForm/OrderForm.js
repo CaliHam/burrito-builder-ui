@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { postOrder } from "../../apiCalls";
 
-function OrderForm(props) {
+function OrderForm({orders, setOrders}) {
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState([]);
+  const [newOrder, setNewOrder] = useState('')
 
   function handleSubmit(e) {
     e.preventDefault();
+    postOrder(newOrder).then(response => setOrders({...orders, response}))
+    .catch(err => console.log('error posting order', err))
     clearInputs();
   }
 
