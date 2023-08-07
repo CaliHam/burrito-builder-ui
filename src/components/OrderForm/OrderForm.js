@@ -7,17 +7,13 @@ function OrderForm({orders, setOrders}) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!checkInputs()) return
+    if (!name || !ingredients.length) return
     postOrder(name, ingredients).then(data => {
       setOrders([...orders, data])
       clearInputs();
   })
     .catch(err => console.log('error posting order', err))
 
-  }
-
-  const checkInputs = () => {
-    if (!name || !ingredients.length) return false
   }
 
   function clearInputs() {
