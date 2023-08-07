@@ -3,10 +3,10 @@ export const getOrders = () => {
   .then((response) => response.json())
 }
 
-export const postOrder = (newOrder) => {
+export const postOrder = (name, ingredients) => {
   return fetch("http://localhost:3001/api/v1/orders", {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(newOrder)
+    body: JSON.stringify({name, ingredients})
   }).then(response => response.json())
 }

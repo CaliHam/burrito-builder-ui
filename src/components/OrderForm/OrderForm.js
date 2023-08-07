@@ -7,14 +7,11 @@ function OrderForm({orders, setOrders}) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const currentOrder = {
-      id: Date.now(),
-      name: name,
-      ingredients: ingredients
-    }
-    postOrder(currentOrder).then(response => setOrders({...orders, response}))
+    postOrder(name, ingredients).then(data => {
+      setOrders([...orders, data])
+      clearInputs();
+  })
     .catch(err => console.log('error posting order', err))
-    clearInputs();
   }
 
   function clearInputs() {
