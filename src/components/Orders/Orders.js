@@ -1,12 +1,12 @@
 import React from "react";
 import "./Orders.css";
-import { deleteOrder } from "../../apiCalls";
+import { deleteOrder, getOrders } from "../../apiCalls";
 
 const Orders = (props) => {
 
   const orderComplete = (e) => {
     deleteOrder(e.target.id).then(
-      console.log('success')
+      getOrders().then(data => props.setOrders(data.orders))
     ).catch(err => console.log(err))
   }
 

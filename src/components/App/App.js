@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     getOrders().then(data => setOrders(data.orders))
     .catch((err) => console.error("Error fetching:", err));
-  }, [orders]);
+  }, []);
 
   return (
     <main className="App">
@@ -19,7 +19,7 @@ function App() {
         <OrderForm orders={orders} setOrders={setOrders}/>
       </header>
 
-      <Orders orders={orders} />
+      <Orders orders={orders} setOrders={setOrders}/>
     </main>
   );
 }
